@@ -1,8 +1,10 @@
+
 function difficultyStart(){
     let bombs = [];
     let score = 0;
     let difficulty = document.getElementById("difficulty").value;
-    document.querySelector(".maingrid").innerHTML = "";
+    document.querySelector(".maingrid").innerHTML = ``;
+    document.getElementById("result").innerHTML = `` ;
     if(difficulty == "easy"){
         for (let i = 1; i <= 100; i++) {
             let square = `<div id="item-${i}" class="grid10 item">${i}</div>`;
@@ -37,40 +39,43 @@ function difficultyStart(){
         }   
 
         for(let i = 0; i < listItem.length; i++) {
-            listItem[i].addEventListener("click", checkBombs(listItem[i]));
+            listItem[i].addEventListener("click", function() {
+                let numtest= parseInt(this.innerHTML);
+                if (bombs.includes(numtest)==true) {
+                    this.style.backgroundColor = "#DC143C";
+                    gameLost();
+                }else{
+                    this.style.backgroundColor = "#6495ED";
+                    score += 100;
+                }
+            });
         }
-
-        function checkBombs(test){
-            console.log(test)
-            let numtest= parseInt(test.innerHTML);
-            if (bombs.includes(numtest)==true) {
-                test.style.backgroundColor = "#DC143C";
-                // gameLost();
-            }else{
-                test.style.backgroundColor = "#6495ED";
-                score += 100;
-            }
-        }
-
-        // function gameLost(){
-        //     for(let i = 0; i < listItem.length; i++) {
-        //         listItem[i].removeEventListener("click", checkBombs());
-        //             let numtest= parseInt(this.innerHTML);
-        //             if (bombs.includes(numtest)==true) {
-        //                 this.style.backgroundColor = "#DC143C";
-        //             }
+        function gameLost(){
+            for(let i = 0; i < listItem.length; i++) {
                 
-        //     }
-        // }
+                if (bombs.includes(parseInt(listItem[i].innerHTML))==true) {
+                    listItem[i].style.backgroundColor = "#DC143C";
+                }else{
+                    listItem[i].style.backgroundColor = "#6495ED";
+                }
+                
+            }
+            
+            animationRemove()
+            
+        }
+        function animationRemove(){
+            document.getElementById("result").innerHTML = `YOU LOSE! SCORE:${score}` ;
+            for (let t = 0; t < listItem.length; t++) {
+                setTimeout( function(){
+                    
+                    listItem[t].classList.add("opa-off") 
+                    
+                }, 30 * t );
+                console.log(listItem[t]);
+            }
+            
+        }
 
         
 }
-
-
-
-// for( let t = 0; t < 10; t++ )
-//             {
-//                 setTimeout( function(){
-//                     console.log("wait");
-//                 }, 1000 * a )
-//             }

@@ -6,11 +6,17 @@
 
 /* CLASSI GLOBALI */
 
+.opa-off{
+    filter: opacity(0);
+}
 .d-off{
     display: none;
 }
 .d-on{
     display: inline-block!important;
+}
+.d-flex{
+    display: flex!important;
 }
 
 /* CONTAINER */
@@ -27,6 +33,7 @@
     height: 60px;
     box-shadow: 2px 1px 30px black;
     position: fixed;
+    z-index: 999;
     top: 0;
     left: 0;
     right: 0;
@@ -59,6 +66,7 @@
     width: 100%;
     display: flex ;
     justify-content: center;
+    position: relative;
 }
 .maingrid{
     display: flex;
@@ -68,6 +76,8 @@
     margin-top: 150px;  
     height: 650px;
     width: 650px;
+    z-index: 10;
+    
 }
 .grid10{
     width: calc(100%/10);
@@ -96,6 +106,12 @@
     justify-content: center;
     align-items: center;
 }
-.numbox{
+.scorebox{
     color: white;
+    flex-wrap: wrap;  
+    justify-content: center;
+    align-content: center;
+    margin-top: 400px;  
+    position: absolute;
+    z-index: 1;
 }
