@@ -9,7 +9,14 @@
 .opa-off{
     filter: opacity(0);
 }
-
+.removeclick{
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 11;
+}
 
 
 

@@ -4,6 +4,7 @@ function difficultyStart(){
     let score = 0;
     let contwin = 0;
     let difficulty = document.getElementById("difficulty").value;
+    document.getElementById("removeclick").className = "";
     document.querySelector(".maingrid").innerHTML = ``;
     document.getElementById("result").innerHTML = `` ;
     if(difficulty == "easy"){
@@ -44,17 +45,15 @@ function difficultyStart(){
                 let numtest= parseInt(this.innerHTML);
                 if (bombs.includes(numtest)==true) {
                     this.style.backgroundColor = "#DC143C";
-                    document.getElementById("result").innerHTML = `YOU LOSE! SCORE:${score}` ;
+                    document.getElementById("removeclick").classList.add("removeclick");
+                    document.getElementById("result").innerHTML = `YOU LOSE! SCORE:${contwin*100}` ;
                     cellView();
                 }else{
                     this.style.backgroundColor = "#6495ED";
-                    
-                    contwin = contwin + 1;
-                    console.log(contwin);
                     if(contwin<=(listItem.length -16)){
-                    score += 100;
+                    contwin = contwin + 1;
                     }else{
-                    document.getElementById("result").innerHTML = `YOU WIN! SCORE:${score}` ;
+                    document.getElementById("result").innerHTML = `YOU WIN! SCORE:${contwin*100}` ;
                     gameWin()
                     }
                     
