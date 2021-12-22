@@ -9,15 +9,9 @@
 .opa-off{
     filter: opacity(0);
 }
-.d-off{
-    display: none;
-}
-.d-on{
-    display: inline-block!important;
-}
-.d-flex{
-    display: flex!important;
-}
+
+
+
 
 /* CONTAINER */
 

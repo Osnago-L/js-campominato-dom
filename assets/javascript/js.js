@@ -2,6 +2,7 @@
 function difficultyStart(){
     let bombs = [];
     let score = 0;
+    let contwin = 0;
     let difficulty = document.getElementById("difficulty").value;
     document.querySelector(".maingrid").innerHTML = ``;
     document.getElementById("result").innerHTML = `` ;
@@ -37,20 +38,30 @@ function difficultyStart(){
             }
             console.log(bombs)
         }   
-
+        
         for(let i = 0; i < listItem.length; i++) {
             listItem[i].addEventListener("click", function() {
                 let numtest= parseInt(this.innerHTML);
                 if (bombs.includes(numtest)==true) {
                     this.style.backgroundColor = "#DC143C";
-                    gameLost();
+                    document.getElementById("result").innerHTML = `YOU LOSE! SCORE:${score}` ;
+                    cellView();
                 }else{
                     this.style.backgroundColor = "#6495ED";
+                    
+                    contwin = contwin + 1;
+                    console.log(contwin);
+                    if(contwin<=(listItem.length -16)){
                     score += 100;
+                    }else{
+                    document.getElementById("result").innerHTML = `YOU WIN! SCORE:${score}` ;
+                    gameWin()
+                    }
+                    
                 }
             });
         }
-        function gameLost(){
+        function cellView(){
             for(let i = 0; i < listItem.length; i++) {
                 
                 if (bombs.includes(parseInt(listItem[i].innerHTML))==true) {
@@ -60,19 +71,16 @@ function difficultyStart(){
                 }
                 
             }
-            
             animationRemove()
-            
         }
+
         function animationRemove(){
-            document.getElementById("result").innerHTML = `YOU LOSE! SCORE:${score}` ;
             for (let t = 0; t < listItem.length; t++) {
                 setTimeout( function(){
                     
                     listItem[t].classList.add("opa-off") 
                     
                 }, 30 * t );
-                console.log(listItem[t]);
             }
             
         }
